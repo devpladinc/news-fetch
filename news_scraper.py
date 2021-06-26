@@ -26,17 +26,19 @@ class NewsScraper():
 
 
     def fetch_data(self):
-        # client = pymongo.MongoClient(config['MONGO_STR'])
-        # db = client['python-news']
-        # coll = db['scrape-news']
-        # print("Collection:", coll)
+        # connection via cloud
+        try:
+            client = pymongo.MongoClient(config['MONGO_STR'])
+            db = client['python-news']
+            coll = db['scrape-news']
+        except Exception as e:
+            log.warning('DB connection error %s', e)    
 
         headers = {
             'X-Api-Key' : self.api_key
         }
 
-        params = self.get_cmd_input()
-        
+        params = self.get_cmd_input()        
         data = {
             'q' : " ".join(params)
         }
@@ -57,14 +59,16 @@ class NewsScraper():
                     article_data['link'] = article['url']
                     article_data['summary'] = article['description']
 
+                    log.info("Data: %s", article_data)
                     try:
-                        # coll.update(article_data)
+                        coll.insert_one(article_data)
                         log.info('Article added %s', article_data)
                     except Exception as e:
                         log.warning('Article not saved %s', e)
 
             else:
-                print("No revelant news with the corresponding keywords. Please try again.")                
+                print("No revelant news with the corresponding keywords. Please try again.")
+                log.info("No news match %s", params)                
 
         except Exception as e:
             log.warning('Fetch news error %s', e)  
