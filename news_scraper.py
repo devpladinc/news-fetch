@@ -18,7 +18,6 @@ class NewsScraper():
 
     def get_cmd_input(self):
         params = list(sys.argv)
-        print(len(params))
 
         if len(params) == 2:
             params = params[1].split(",")
