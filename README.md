@@ -39,10 +39,23 @@ In order to run the script, you must install the following dependencies first ha
 
 1. Simply type `python main.py` and add the keywords and/or categories of news you wanted to scrape.
 
-#### Example
+#### Example 1
 ```python
 python main.py finance bitcoin texas
 ```
+
+#### Example 2
+```python
+python main.py food,innovations,california
+```
+
+#### Example 3
+```python
+python main.py
+Category: Business
+Location: Silicon Valley
+```
+
 
 ##### Output
 On the backend, the scaper will send an API call to get the news. If relevant news found, there are 2 options to view the saved news.

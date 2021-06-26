@@ -7,6 +7,7 @@ from configs import config
 from utils import logging as log
 import pymongo
 import dns
+import re
 
 class NewsScraper():
 
@@ -17,12 +18,22 @@ class NewsScraper():
 
     def get_cmd_input(self):
         params = list(sys.argv)
+        print(len(params))
 
         if len(params) == 2:
             params = params[1].split(",")
             return params
-            
+
+        if len(params) == 1:
+           category = input("Category:")
+           location = input("Location:") 
+           new_params = []
+           new_params.append(category)
+           new_params.append(location)
+           return new_params
+
         return params[1:]
+
 
 
     def fetch_data(self):
@@ -71,5 +82,4 @@ class NewsScraper():
                 log.info("No news match %s", params)                
 
         except Exception as e:
-            log.warning('Fetch news error %s', e)  
-
+            log.warning('Fetch news error %s', e)
