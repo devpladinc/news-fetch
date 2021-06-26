@@ -25,7 +25,7 @@ In order to run the script, you must install the following dependencies first ha
 ##### How to use script
 Simply type `python main.py` and add the keywords and/or categories of news you wanted to scrape.
 
-**Example**
+#### Example
 ```python
 python main.py finance bitcoin texas
 ```
