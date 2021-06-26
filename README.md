@@ -10,23 +10,30 @@
 - Output
 
 ##### Requirements and Dependencies
-----------
 In order to run the script, you must install the following dependencies first hand:
 
 **Python 3.6 (or higher)** 
 **MongoDB Atlas account (Cloud version)**
 **pip**
+**API KEY from newsAPI.org**
 
 ##### Installation
-----------
 
 1. `git clone` - [News scraper](https://github.com/devpladinc/news-fetch.git)
 2. Create virtual environment `python -m virtualenv (environment-name)`
 3. Install packages - `pip install -r requirements.text`
 
 ##### How to use script
-----------
-Simply type `python main.py` and add the keywords and/or categories of news you wanted to scrape.
+1. locate `configs.py` and populate `API_KEY` (from newsAPI.org) ,`MONGODB_USERNAME` and `MONGODB_PASSWORD` (from mongodb Atlas):
+   
+```python
+    config = {
+    'BASE_URL' : "https://newsapi.org",
+    'API_KEY' : <YOUR_API_KEY>,
+    'MONGO_STR' : "mongodb+srv://<MONGODB_USERNAME>:<MONGODB_PASSWORD>@cluster0.v13cn.mongodb.net/python-news?retryWrites=true&w=majority"
+}
+```
+2. Simply type `python main.py` and add the keywords and/or categories of news you wanted to scrape.
 
 **Example**
 ```python
@@ -34,7 +41,6 @@ python main.py finance bitcoin texas
 ```
 
 ##### Output
-----------
 On the backend, the scaper will send an API call to get the news. If relevant news found, there are 2 options to view the saved news.
 
 1. via logs - `new_scrape_log.log`  contains the data saved in the database
