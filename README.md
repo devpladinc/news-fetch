@@ -13,8 +13,9 @@
 In order to run the script, you must install the following dependencies first hand:
 
 - **Python 3.6 (or higher)**
-- **MongoDB Atlas account (Cloud version)**
+- **MongoDB Atlas account and credentials (Cloud version)**
 - **pip**
+- **API_KEY from NewsAPI.org**
 
 ##### Installation
 
@@ -23,7 +24,20 @@ In order to run the script, you must install the following dependencies first ha
 3. Install packages - `pip install -r requirements.text`
 
 ##### How to use script
-Simply type `python main.py` and add the keywords and/or categories of news you wanted to scrape.
+1. locate `configs.py`, and input the following:
+    - API_KEY - from newAPI.org
+    - MONGODB_USERNAME, MONGODB_PASSWORD - from mongodb
+    - DB_NAME = database name
+  
+```python
+    config = {
+    'BASE_URL' : "https://newsapi.org",
+    'API_KEY' : <API_KEY>,
+    'MONGO_STR' : "mongodb+srv://<MONGODB_USERNAME>:<MONGODB_PASSWORD>@cluster0.v13cn.mongodb.net/<DB_NAME>?retryWrites=true&w=majority"
+}
+```
+
+1. Simply type `python main.py` and add the keywords and/or categories of news you wanted to scrape.
 
 #### Example
 ```python
